@@ -1,1 +1,85 @@
-HOME TEST
+<div class="container">
+  <div id="home">
+    <div class="row">
+      <h1>What is Blueheronvideo?</h1>
+
+      <div class="col-sm-5 offset-sm-1">
+        <p class="lead text-start">Blueheronvideo is trying to film all bands in, and touring through, Portland. Since 2014, a very good chunk has been documented with consent to post and at no cost to the bands. With over 1500 bands filmed, often multiple times from different shows and venues, it is a wide ranging and impressive array of the music scene in Portland.</p>
+        <p class="lead text-start"><%= link_to 'Subscribe to the channel', 'https://www.youtube.com/blueheronvideo', target: '_blank' %>, start watching, and help support the progress!!</p>
+      </div>
+
+      <div class="col-sm-5">
+        <div class="video-container">
+          <iframe src="//youtube.com/embed/bRK9PPBueuE" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="row support">
+      <h2>Support</h2>
+
+      <div class="col-sm-8 offset-sm-2">
+        <p class="lead">If you appreciate the work being done here, then please consider becoming a patron, ordering a t-shirt, and/or simply sending along some digital cash! Every bit helps.</p>
+      </div>
+
+      <div class="col-sm-4">
+        <ul class="list-unstyled">
+          <li>
+            <%= link_to "https://venmo.com/blueheronvideo", target: "_blank" do %>
+              <%= image_tag "venmo.png", class: "img-fluid" %>
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to "https://www.patreon.com/bePatron?u=14353144", target: "_blank" do %>
+              <%= image_tag "patreon.png", class: "img-fluid" %>
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to "https://ko-fi.com/blueheronvideo", target: "_blank" do %>
+              <%= image_tag "ko-fi.png", class: "img-fluid" %>
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to "https://paypal.me/blueheronvideo", target: "_blank" do %>
+              <%= image_tag "paypal.png", class: "img-fluid" %>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-sm-4">
+        <%= image_tag "tshirt.png", class: "img-fluid" %>
+        <p class="small">T-shirts are $25 (including shipping)</p>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="hosted_button_id" value="643ECZX3DHWLA">
+          <input type="hidden" name="on0" value="Sizes">
+          <select name="os0">
+            <option value="Women's M">Women's M</option>
+            <option value="Women's L">Women's L</option>
+            <option value="Men's S">Men's S</option>
+            <option value="Men's M">Men's M</option>
+            <option value="Men's L">Men's L</option>
+            <option value="Men's XL">Men's XL</option>
+          </select>
+          <button type="submit" class="btn btn-xs btn-success">
+            PAY WITH PAYPAL
+          </button>
+        </form>
+      </div>
+
+      <div class='col col-sm-4'>
+        <%= image_tag "sticker.jpg", class: "img-fluid" %>
+        <p class='small'>
+          Free sticker (3" x 2.5") included<br/>
+          with each t-shirt order
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

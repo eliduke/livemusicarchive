@@ -18,11 +18,28 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag :application, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
+    <div class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Blueheronvideo</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" href="#">Search</a>
+            <a class="nav-link" href="#">Bands</a>
+            <a class="nav-link" href="#">Venues</a>
+            <a class="nav-link" href="#">Shows</a>
+          </div>
+        </div><!-- nav collapse -->
+      </div>
+    </div>
+
     <%= yield %>
   </body>
 </html>
