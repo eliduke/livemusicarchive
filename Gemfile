@@ -7,7 +7,7 @@ gem "turbo-rails"
 gem "stimulus-rails"
 gem "sassc-rails"
 gem "bootstrap", "~> 5.3.3"
-gem "sqlite3", ">= 2.1"
+gem "pg"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
