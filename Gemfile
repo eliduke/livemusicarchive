@@ -11,6 +11,9 @@ gem "pg"
 gem "pg_search"
 gem "faker"
 gem "sorcery"
+gem "validates_email_format_of"
+gem "will_paginate"
+gem "will_paginate-bootstrap"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"

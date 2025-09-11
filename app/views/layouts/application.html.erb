@@ -17,28 +17,34 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Myeongjo:700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+      <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :application, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <div class="navbar navbar-inverse">
+    <nav class="navbar navbar-dark mb-4 sticky-top bg-blueheron">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/">Blueheronvideo</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-link" href="#">Search</a>
-            <a class="nav-link" href="#">Bands</a>
-            <a class="nav-link" href="#">Venues</a>
-            <a class="nav-link" href="#">Shows</a>
-          </div>
-        </div><!-- nav collapse -->
+
+        <!-- LOGO LINK -->
+        <a class="navbar-brand" href="/">
+          blueheron.video
+        </a>
+
+        <ul class="nav-list d-flex list-unstyled p-0 m-0 gap-2 fs-3 text-white">
+          <li><%= link_to icon('search'), search_index_path %></li>
+          <li><%= link_to "Bands", bands_path %></li>
+          <li><%= link_to "Venues", venues_path %></li>
+          <li><%= link_to "Shows", shows_path %></li>
+          <% if current_user %>
+            <li><%= link_to "Admin", admin_path %></li>
+          <% end %>
+        </ul>
       </div>
-    </div>
+    </nav>
 
     <div class="container">
       <% if notice %>

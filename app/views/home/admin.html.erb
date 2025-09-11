@@ -8,9 +8,7 @@
     <%= link_to "New Video", new_video_path, class: 'btn btn-sm btn-info' %>
 
     <%=
-      link_to icon('sign-out', "Logout (#{current_user.username})"),
-      logout_path,
-      method: :post,
+      button_to icon('sign-out', "Logout (#{current_user.username})"), logout_path,
       data: { confirm: 'Are you sure you want to logout?' },
       class: 'btn btn-sm btn-danger'
     %>
