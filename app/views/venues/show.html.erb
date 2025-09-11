@@ -1,0 +1,47 @@
+<%= render "shared/social_meta", object: @venue %>
+<%= render "shared/admin_links", object: @venue %>
+
+<div id="venue">
+  <div class="row">
+    <div class="col-sm-6">
+      <h1><%= @venue.name %></h1>
+
+      <%= simple_format(@venue.info, class: "info") %>
+
+      <h2><%= @venue.location %></h2>
+    </div>
+
+    <div class="col-sm-6">
+      <%= image_tag(image_url_for(@venue, size: "1200"), class: "img-fluid") %>
+
+      <ul class="links list-inline text-center">
+        <%= links_for(@venue) %>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Videos</h3>
+  <%=
+    render partial: "videos/list", locals: {
+      videos: @videos.sample(6),
+      include_band: true,
+      include_venue: false,
+      include_date: true
+    }
+  %>
+
+  <% if @videos.size > 6 %>
+    <%= link_to "Click here for all <em>#{@venue.name}</em> videos".html_safe, videos_url(venue_id: @venue.id), class: 'btn btn-md btn-info btn-center' %>
+  <% end %>
+
+  <hr />
+
+  <h3>Shows</h3>
+  <%=
+    render partial: "shows/list", locals: {
+      shows: @shows,
+      include_venue: false,
+      include_headers: false
+    }
+  %>
+</div>

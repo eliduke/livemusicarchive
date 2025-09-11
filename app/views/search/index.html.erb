@@ -1,0 +1,44 @@
+<%= render "shared/social_meta", object: "Global Search" %>
+
+<div id="search">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h1 class='text-center'>Global Search</h1>
+      <p class='help-block text-center'>All bands, venues, shows, and videos</p>
+      <%= form_with(url: search_index_path, method: :get, local: true) do |form| %>
+        <div class="form-group">
+          <%= form.label :q, class: 'sr-only' %>
+          <div class="input-group">
+            <div class="input-group-addon">
+              <%= icon('search') %>
+            </div>
+
+            <%= form.text_field :q, value: params[:q], class: "form-control input-lg", placeholder: "What are you looking for?" %>
+            <% if params[:q] %>
+              <div class="input-group-addon">
+                <%= link_to search_index_path do %>
+                  <%= icon('times') %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @results.any? %>
+        <table class='table table-striped' style='background-color: #fff'>
+          <% @results.each do |result| %>
+            <tr>
+              <td width='50'><%= result.searchable_type %></td>
+              <td><%= link_to result.searchable.display_name, result.searchable %></td>
+            </tr>
+          <% end %>
+        </table>
+      <% elsif @results.empty? && params[:q] %>
+        <p>Oops! Didn't find anything for <em><%= params[:q] %></em>. Try something else.</p>
+      <% end %>
+    </div>
+  </div>
+
+  <%= will_paginate @results %>
+</div>

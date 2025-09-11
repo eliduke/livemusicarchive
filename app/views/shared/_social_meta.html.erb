@@ -1,0 +1,17 @@
+<%= content_for :page_title do %>
+  <% if object.is_a?(String) %>
+    <%= "#{object} on Blueheronvideo" %>
+  <% elsif object.display_name.present? %>
+    <%= "'#{object.display_name}' on Blueheronvideo" %>
+  <% else %>
+    Blueheronvideo
+  <% end %>
+<% end %>
+
+<%= content_for :page_image do %>
+  <% if object.is_a?(String) %>
+    <%= image_url('blueheron.jpg') %>
+  <% elsif object.display_image.present? %>
+    <%= polymorphic_url(object.display_image, size: "1200") %>
+  <% end %>
+<% end %>

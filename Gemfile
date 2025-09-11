@@ -8,6 +8,9 @@ gem "stimulus-rails"
 gem "sassc-rails"
 gem "bootstrap", "~> 5.3.3"
 gem "pg"
+gem "pg_search"
+gem "faker"
+gem "sorcery"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"

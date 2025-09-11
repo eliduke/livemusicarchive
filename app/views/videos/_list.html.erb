@@ -1,0 +1,25 @@
+<div class="video-flex-container">
+  <% videos.each do |video| %>
+    <div class="video-flex-item video">
+      <div class="video-container">
+        <iframe src="//youtube.com/embed/<%= video.url.split("=").last %>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      </div>
+
+      <p>
+        <em><%= link_to video.name, video_path(video) %></em>
+
+        <% if include_band %>
+          by <%= link_to video.band.name, video.band %>
+        <% end %>
+
+        <% if include_venue %>
+          at <%= link_to video.show.venue.name, video.show.venue %>
+        <% end %>
+
+        <%= video.show.date.strftime("on %B #{video.show.date.day.ordinalize}, %Y") if include_date %>
+      </p>
+
+      <%= simple_format(video.feature.caption) if video.feature && controller_name == 'home' %>
+    </div>
+  <% end %>
+</div>

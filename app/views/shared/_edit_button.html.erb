@@ -1,0 +1,5 @@
+<%=
+  link_to icon('edit', 'Edit'),
+  Rails.application.routes.url_helpers.send("edit_#{object.class.name.downcase}_path", object),
+  class: "btn btn-sm btn-primary"
+%>

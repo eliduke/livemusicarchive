@@ -1,0 +1,25 @@
+<%= render "shared/social_meta", object: "Bands" %>
+
+<div id="bands">
+  <div class="row">
+    <div class="col-sm-8">
+      <h1>Bands</h1>
+    </div>
+    <div class="col-sm-4">
+      <%= render "shared/search_form", path: bands_path %>
+    </div>
+  </div>
+
+  <%= query_result_details(params[:q], @bands.size) %>
+
+  <div class="index-flex-container">
+    <% @bands.each do |band| %>
+      <div class="index-flex-item">
+        <%= link_to image_tag(image_url_for(band), class: "img-fluid"), band %>
+        <p class='text-center'><%= link_to band.name, band %></p>
+      </div>
+    <% end %>
+  </div>
+
+  <%= will_paginate @bands %>
+</div>

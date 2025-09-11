@@ -1,0 +1,47 @@
+<%= render "shared/social_meta", object: @band %>
+<%= render "shared/admin_links", object: @band %>
+
+<div id="band">
+  <div class="row">
+    <div class="col-sm-6">
+      <h1><%= @band.name %></h1>
+
+      <%= simple_format(@band.bio, class: "bio") %>
+
+      <h2><%= @band.location %></h2>
+    </div>
+
+    <div class="col-sm-6">
+      <%= image_tag(image_url_for(@band, size: "1200"), class: "img-fluid") %>
+
+      <ul class="links list-inline text-center">
+        <%= links_for(@band) %>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Videos</h3>
+  <%=
+    render partial: "videos/list", locals: {
+      videos: @videos.sample(6),
+      include_band: false,
+      include_venue: true,
+      include_date: true
+    }
+  %>
+
+  <% if @videos.size > 6 %>
+    <%= link_to "Click here for all <em>#{@band.name}</em> videos".html_safe, videos_url(band_id: @band.id), class: 'btn btn-md btn-info btn-center' %>
+  <% end %>
+
+  <hr />
+
+  <h3>Shows</h3>
+  <%=
+    render partial: "shows/list", locals: {
+      shows: @shows,
+      include_venue: true,
+      include_headers: false
+    }
+  %>
+</div>

@@ -1,0 +1,64 @@
+<%= form_with(model: show, local: true) do |form| %>
+  <% if show.errors.any? %>
+    <div id="error_explanation">
+      <p><%= pluralize(show.errors.count, "error") %> prohibited this show from being saved:</p>
+
+      <ul>
+      <% show.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :venue_id %>
+    <%= form.select :venue_id, options_from_collection_for_select(Venue.all.order(:name), "id", "name", @show.venue&.id), { include_blank: "Select a Venue" }, id: :show_venue_id, class: "form-control input-lg" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :date %><br/>
+    <%= form.date_select :date, { order: [:day, :month, :year], start_year: 10.years.ago.year, end_year: Time.now.year }, { class: "form-control input-lg", style: "width: auto; display: inline" } %>
+  </div>
+
+  <% if current_user.admin? %>
+    <div class="form-group">
+      <%= form.label :status %>
+      <%=
+        form.select :status, Show.statuses.keys.map { |w| [w.humanize, w] }, {},
+        class: "form-control input-lg"
+      %>
+      <p class="help-block">This is an admin-only field. If you can see this, you are an admin.</p>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= label_tag "Bands" %>
+    <ul class="list-unstyled">
+      <% Band.all.order(:name).each do |band| %>
+        <li>
+          <%= check_box_tag "show[band_ids][]", band.id, @show.bands.include?(band), id: band.name.parameterize %>
+          <%= label_tag band.name.parameterize, band.name %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :name, "Name (optional)" %>
+    <%= form.text_field :name, id: :show_name, class: "form-control input-lg" %>
+    <p class="help-block">
+      The show name is usually only included for festivals and such as, like <em>Ceremony of Sludge 2017 First Night</em>.<br/>
+      If this is left blank, the show will be named "<em>Band1, Band2... at Venue</em>".
+    </p>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :notes, "Notes (optional)" %>
+    <%= form.text_area :notes, id: :show_notes, class: "form-control input-lg" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Save", class: "btn btn-lg btn-primary btn-block" %>
+  </div>
+<% end %>

@@ -1,0 +1,74 @@
+<%= form_with(model: venue, local: true) do |form| %>
+  <% if venue.errors.any? %>
+    <div id="error_explanation">
+      <p><%= pluralize(venue.errors.count, "error") %> prohibited this venue from being saved:</p>
+
+      <ul>
+        <% venue.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :venue_name, class: "form-control input-lg" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :location, "Location (optional)" %>
+    <%= form.text_field :location, id: :venue_location, class: "form-control input-lg" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :info, "Info (optional)" %>
+    <%= form.text_area :info, id: :venue_info, class: "form-control input-lg" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :website, "Website (optional)" %>
+    <%= form.text_field :website, id: :venue_website, class: "form-control input-lg" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :facebook, "Facebook (optional)" %>
+    <%= form.text_field :facebook, id: :venue_facebook, class: "form-control input-lg" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :instagram, "Instagram (optional)" %>
+    <%= form.text_field :instagram, id: :venue_instagram, class: "form-control input-lg" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :twitter, "Twitter (optional)" %>
+    <%= form.text_field :twitter, id: :venue_twitter, class: "form-control input-lg" %>
+  </div>
+
+  <% if current_user.admin? %>
+    <div class="form-group">
+      <%= form.label :status %>
+      <%=
+        form.select :status, Venue.statuses.keys.map { |w| [w.humanize, w] }, {},
+        class: "form-control input-lg"
+      %>
+      <p class="help-block">This is an admin-only field. If you can see this, you are an admin.</p>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :image, "Image (optional)" %>
+
+    <% if @venue.image.attached? %>
+      <%= image_tag(image_url_for(@venue), class: "img-fluid") %>
+      <p class="help-block">Choose a new image to replace the one above</p>
+    <% end %>
+
+    <%= form.file_field :image, id: :venue_image, class: "form-control input-lg" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Save", class: "btn btn-lg btn-primary btn-block"  %>
+  </div>
+<% end %>

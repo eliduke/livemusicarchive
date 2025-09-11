@@ -1,0 +1,61 @@
+<%= render "shared/social_meta", object: "Videos" %>
+
+<div id="videos">
+  <div class="row">
+    <div class="col-sm-8">
+      <h1>Videos</h1>
+    </div>
+    <div class="col-sm-4">
+      <%= render "shared/search_form", path: videos_path %>
+    </div>
+  </div>
+
+  <%= search_filters(params) %>
+
+  <%= query_result_details(params[:q], @videos.size) %>
+
+  <table class="table table-striped videos-list">
+    <thead>
+      <tr>
+        <th>Name</th>
+
+        <% unless @hide_band %>
+          <th>Band</th>
+        <% end %>
+
+        <% unless @hide_venue %>
+          <th>Venue</th>
+        <% end %>
+
+        <th>Date</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @videos.order(created_at: :desc).each do |video| %>
+        <tr>
+          <td><%= link_to video.name, video %></td>
+
+          <% unless @hide_band %>
+            <td><%= link_to video.band.name, video.band %></td>
+          <% end %>
+
+          <% unless @hide_venue %>
+            <td><%= link_to video.venue.name, video.venue %></td>
+          <% end %>
+
+          <td>
+            <span class="hide-on-mobile">
+              <%= link_to video.show.date.strftime("%B #{video.show.date.day.ordinalize}, %Y"), video.show %>
+            </span>
+            <span class="hide-on-desktop">
+              <%= link_to video.show.date.strftime("%D"), video.show %>
+            </span>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= will_paginate @videos %>
+</div>

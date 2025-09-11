@@ -1,85 +1,160 @@
-<div class="container">
-  <div id="home">
-    <div class="row">
-      <h1>What is Blueheronvideo?</h1>
+<div id="home">
+  <div class="row">
+    <h1>What is Blueheronvideo?</h1>
 
-      <div class="col-sm-5 offset-sm-1">
-        <p class="lead text-start">Blueheronvideo is trying to film all bands in, and touring through, Portland. Since 2014, a very good chunk has been documented with consent to post and at no cost to the bands. With over 1500 bands filmed, often multiple times from different shows and venues, it is a wide ranging and impressive array of the music scene in Portland.</p>
-        <p class="lead text-start"><%= link_to 'Subscribe to the channel', 'https://www.youtube.com/blueheronvideo', target: '_blank' %>, start watching, and help support the progress!!</p>
-      </div>
-
-      <div class="col-sm-5">
-        <div class="video-container">
-          <iframe src="//youtube.com/embed/bRK9PPBueuE" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        </div>
-      </div>
+    <div class="col-sm-5 offset-sm-1">
+      <p class="lead text-start">Blueheronvideo is trying to film all bands in, and touring through, Portland. Since 2014, a very good chunk has been documented with consent to post and at no cost to the bands. With over 1500 bands filmed, often multiple times from different shows and venues, it is a wide ranging and impressive array of the music scene in Portland.</p>
+      <p class="lead text-start"><%= link_to 'Subscribe to the channel', 'https://www.youtube.com/blueheronvideo', target: '_blank' %>, start watching, and help support the progress!!</p>
     </div>
 
-    <hr />
-
-    <div class="row support">
-      <h2>Support</h2>
-
-      <div class="col-sm-8 offset-sm-2">
-        <p class="lead">If you appreciate the work being done here, then please consider becoming a patron, ordering a t-shirt, and/or simply sending along some digital cash! Every bit helps.</p>
-      </div>
-
-      <div class="col-sm-4">
-        <ul class="list-unstyled">
-          <li>
-            <%= link_to "https://venmo.com/blueheronvideo", target: "_blank" do %>
-              <%= image_tag "venmo.png", class: "img-fluid" %>
-            <% end %>
-          </li>
-
-          <li>
-            <%= link_to "https://www.patreon.com/bePatron?u=14353144", target: "_blank" do %>
-              <%= image_tag "patreon.png", class: "img-fluid" %>
-            <% end %>
-          </li>
-
-          <li>
-            <%= link_to "https://ko-fi.com/blueheronvideo", target: "_blank" do %>
-              <%= image_tag "ko-fi.png", class: "img-fluid" %>
-            <% end %>
-          </li>
-
-          <li>
-            <%= link_to "https://paypal.me/blueheronvideo", target: "_blank" do %>
-              <%= image_tag "paypal.png", class: "img-fluid" %>
-            <% end %>
-          </li>
-        </ul>
-      </div>
-
-      <div class="col-sm-4">
-        <%= image_tag "tshirt.png", class: "img-fluid" %>
-        <p class="small">T-shirts are $25 (including shipping)</p>
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-          <input type="hidden" name="cmd" value="_s-xclick">
-          <input type="hidden" name="hosted_button_id" value="643ECZX3DHWLA">
-          <input type="hidden" name="on0" value="Sizes">
-          <select name="os0">
-            <option value="Women's M">Women's M</option>
-            <option value="Women's L">Women's L</option>
-            <option value="Men's S">Men's S</option>
-            <option value="Men's M">Men's M</option>
-            <option value="Men's L">Men's L</option>
-            <option value="Men's XL">Men's XL</option>
-          </select>
-          <button type="submit" class="btn btn-xs btn-success">
-            PAY WITH PAYPAL
-          </button>
-        </form>
-      </div>
-
-      <div class='col col-sm-4'>
-        <%= image_tag "sticker.jpg", class: "img-fluid" %>
-        <p class='small'>
-          Free sticker (3" x 2.5") included<br/>
-          with each t-shirt order
-        </p>
+    <div class="col-sm-5">
+      <div class="video-container">
+        <iframe src="//youtube.com/embed/bRK9PPBueuE" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
       </div>
     </div>
+  </div>
+
+  <hr />
+
+  <div class='videos'>
+    <h2>Selected Videos</h2>
+    <%=
+      render partial: "videos/list", locals: {
+        videos: Video.all.sample(3),
+        include_band: true,
+        include_venue: true,
+        include_date: true
+      }
+    %>
+  </div>
+
+  <hr />
+
+  <div class='row bands'>
+    <h2>Selected Bands</h2>
+    <% Band.all.sample(3).each do |band| %>
+      <div class='band col-sm-4'>
+        <%= link_to band do %>
+          <%= image_tag(image_url_for(band), class: 'img-fluid') %>
+          <h3><%= band.name %></h3>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row support">
+    <h2>Support</h2>
+
+    <div class="col-sm-8 offset-sm-2">
+      <p class="lead">If you appreciate the work being done here, then please consider becoming a patron, ordering a t-shirt, and/or simply sending along some digital cash! Every bit helps.</p>
+    </div>
+
+    <div class="col-sm-4">
+      <ul class="list-unstyled">
+        <li>
+          <%= link_to "https://venmo.com/blueheronvideo", target: "_blank" do %>
+            <%= image_tag "venmo.png", class: "img-fluid" %>
+          <% end %>
+        </li>
+
+        <li>
+          <%= link_to "https://www.patreon.com/bePatron?u=14353144", target: "_blank" do %>
+            <%= image_tag "patreon.png", class: "img-fluid" %>
+          <% end %>
+        </li>
+
+        <li>
+          <%= link_to "https://ko-fi.com/blueheronvideo", target: "_blank" do %>
+            <%= image_tag "ko-fi.png", class: "img-fluid" %>
+          <% end %>
+        </li>
+
+        <li>
+          <%= link_to "https://paypal.me/blueheronvideo", target: "_blank" do %>
+            <%= image_tag "paypal.png", class: "img-fluid" %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-sm-4">
+      <%= image_tag "tshirt.png", class: "img-fluid" %>
+      <p class="small">T-shirts are $25 (including shipping)</p>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="643ECZX3DHWLA">
+        <input type="hidden" name="on0" value="Sizes">
+        <select name="os0">
+          <option value="Women's M">Women's M</option>
+          <option value="Women's L">Women's L</option>
+          <option value="Men's S">Men's S</option>
+          <option value="Men's M">Men's M</option>
+          <option value="Men's L">Men's L</option>
+          <option value="Men's XL">Men's XL</option>
+        </select>
+        <button type="submit" class="btn btn-xs btn-success">
+          PAY WITH PAYPAL
+        </button>
+      </form>
+    </div>
+
+    <div class='col col-sm-4'>
+      <%= image_tag "sticker.jpg", class: "img-fluid" %>
+      <p class='small'>
+        Free sticker (3" x 2.5") included<br/>
+        with each t-shirt order
+      </p>
+    </div>
+  </div>
+
+  <div class='row featured-video'>
+    <div class='col-md-10 col-md-offset-1'>
+      <h2>Featured Video</h2>
+
+      <div class="video-container">
+        <iframe src="//youtube.com/embed/<%= @main_video.url.split("=").last %>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      </div>
+
+      <h3>
+        <%= link_to @main_video.name, @main_video %>
+        by <%= link_to @main_video.band.name, @main_video.band %>
+        at <%= link_to @main_video.show.venue.name, @main_video.show.venue %>
+        on <%= link_to @main_video.show.date.strftime("%B #{@main_video.show.date.day.ordinalize}, %Y"), @main_video.show %>
+      </h3>
+
+      <p><%= @main_feature.caption %></p>
+
+      <% if current_user && controller_name == 'home' %>
+        <span class='btn-center'>
+          <%= link_to "edit feature", edit_feature_path(@main_feature, video_id: @main_video.id), class: 'btn btn-xs btn-primary' %>
+        </span>
+      <% end %>
+    </div>
+  </div>
+
+  <div class='row shows'>
+    <h2>Selected Shows</h2>
+    <% Show.all.sample(3).each do |show| %>
+      <div class='show col-sm-4'>
+        <%= link_to show do %>
+          <h3><%= show.venue.name %></h3>
+          <p><%= show.date.strftime("%B #{show.date.day.ordinalize}, %Y") %></p>
+          <ul class='list-unstyled'>
+            <% show.bands.each do |band| %>
+              <li><%= band.name %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='supporters'>
+    <h2>Thank You, Supporters!</h2>
+    <ul class='list-inline'>
+      <% @supporters.each do |name| %>
+        <li><%= name %></li>
+      <% end %>
+    </ul>
   </div>
 </div>

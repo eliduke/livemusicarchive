@@ -1,0 +1,16 @@
+<% if current_user %>
+  <div class='admin-links'>
+    <div class='buttons'>
+      <%= status_for(object) %>
+      <%= render "shared/edit_button", object: object %>
+
+      <% if object.is_a?(Video) %>
+        <% if object.feature? %>
+          <%= link_to "Edit Feature", edit_feature_path(object.feature, video_id: object.id), class: "btn btn-sm btn-info" %>
+        <% else %>
+          <%= link_to "Add to Feature", set_feature_path(video_id: object.id), class: "btn btn-sm btn-info" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

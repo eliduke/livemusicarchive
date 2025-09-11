@@ -1,0 +1,26 @@
+<%= render "shared/social_meta", object: "Shows" %>
+
+<div id="shows">
+  <div class="row">
+    <div class="col-sm-8">
+      <h1>Shows<h1>
+    </div>
+    <div class="col-sm-4">
+      <%= render "shared/search_form", path: shows_path %>
+    </div>
+  </div>
+
+  <%= search_filters(params) %>
+
+  <%= query_result_details(params[:q], @shows.size) %>
+
+  <%=
+    render partial: "shows/list", locals: {
+      shows: @shows,
+      include_venue: true,
+      include_headers: true
+    }
+  %>
+
+  <%= will_paginate @shows %>
+</div>

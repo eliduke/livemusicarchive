@@ -1,0 +1,84 @@
+<%= form_with(model: band, local: true) do |form| %>
+  <% if band.errors.any? %>
+    <div id="error_explanation">
+      <p><%= pluralize(band.errors.count, "error") %> prohibited this band from being saved:</p>
+
+      <ul>
+      <% band.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :band_name, class: "form-control input-lg" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :location, "Location (optional)" %>
+    <%= form.text_field :location, id: :band_location, class: "form-control input-lg" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :bio, "Bio (optional)" %>
+    <%= form.text_area :bio, id: :band_bio, class: "form-control input-lg" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :website, "Website (optional)" %>
+    <%= form.text_field :website, id: :band_website, class: "form-control input-lg" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :bandcamp, "Bandcamp (optional)" %>
+    <%= form.text_field :bandcamp, id: :band_bandcamp, class: "form-control input-lg" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :facebook, "Facebook (optional)" %>
+    <%= form.text_field :facebook, id: :band_facebook, class: "form-control input-lg" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :soundcloud, "Soundcloud (optional)" %>
+    <%= form.text_field :soundcloud, id: :band_soundcloud, class: "form-control input-lg" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :instagram, "Instagram (optional)" %>
+    <%= form.text_field :instagram, id: :band_instagram, class: "form-control input-lg" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :twitter, "Twitter (optional)" %>
+    <%= form.text_field :twitter, id: :band_twitter, class: "form-control input-lg" %>
+  </div>
+
+  <% if current_user.admin? %>
+    <div class="form-group">
+      <%= form.label :status %>
+      <%=
+        form.select :status, Band.statuses.keys.map { |w| [w.humanize, w] }, {},
+        class: "form-control input-lg"
+      %>
+      <p class="help-block">This is an admin-only field. If you can see this, you are an admin.</p>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :image, "Image (optional)" %>
+
+    <% if @band.image.attached? %>
+      <%= image_tag(image_url_for(@band), class: "img-fluid") %>
+      <p class="help-block">Choose a new image to replace the one above</p>
+    <% end %>
+
+    <%= form.file_field :image, id: :band_image, class: "form-control input-lg" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Save", class: "btn btn-lg btn-primary btn-block"  %>
+  </div>
+<% end %>

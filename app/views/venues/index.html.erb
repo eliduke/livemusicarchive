@@ -1,0 +1,25 @@
+<%= render "shared/social_meta", object: "Venues" %>
+
+<div id="venues">
+  <div class="row">
+    <div class="col-sm-8">
+      <h1>Venues</h1>
+    </div>
+    <div class="col-sm-4">
+      <%= render "shared/search_form", path: venues_path %>
+    </div>
+  </div>
+
+  <%= query_result_details(params[:q], @venues.size) %>
+
+  <div class="index-flex-container">
+    <% @venues.each do |venue| %>
+      <div class="index-flex-item">
+        <%= link_to image_tag(image_url_for(venue, size: "600"), class: "img-fluid"), venue %>
+        <p class='text-center'><%= link_to venue.name, venue %></p>
+      </div>
+    <% end %>
+  </div>
+
+  <%= will_paginate @venues %>
+</div>

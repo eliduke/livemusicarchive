@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+    <h1>New Video</h1>
+
+    <% if params[:band_id].nil? && params[:show_id].nil? %>
+      <blockquote>
+        <p><strong>PRO-TIP!</strong></p>
+        <p>It's <strong>much</strong> easier and more reliable to add a video from an individual show page. Pick a show <strong><%= link_to "from here", shows_path %></strong> and then next to each band name you'll see an "add a video" link that will pre-populate this form with the correct show and band.</p>
+      </blockquote>
+    <% end %>
+
+    <%= render 'form', video: @video %>
+  </div>
+</div>

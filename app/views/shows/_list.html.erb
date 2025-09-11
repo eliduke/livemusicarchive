@@ -1,0 +1,48 @@
+<table class="table table-striped shows-list">
+  <thead>
+    <tr>
+      <% if include_headers %>
+        <th>Name</th>
+      <% end %>
+
+      <% if include_headers %>
+        <% if include_venue %>
+          <th>
+            <span class="hide-on-mobile">
+              Venue
+            </span>
+          </th>
+        <% end %>
+      <% end %>
+
+      <% if include_headers %>
+        <th>Date</th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% shows.each do |show| %>
+      <tr>
+        <td><%= link_to show.display_name, show %></td>
+
+        <% if include_venue %>
+          <td>
+            <span class="hide-on-mobile">
+              <%= link_to show.venue.name, show.venue %>
+            </span>
+          </td>
+        <% end %>
+
+        <td>
+          <span class="hide-on-mobile">
+            <%= link_to show.date.strftime("%B #{show.date.day.ordinalize}, %Y"), show %>
+          </span>
+          <span class="hide-on-desktop">
+            <%= link_to show.date.strftime("%D"), show %>
+          </span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
