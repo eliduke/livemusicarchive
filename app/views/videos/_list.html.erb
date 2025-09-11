@@ -1,6 +1,6 @@
-<div class="video-flex-container">
+<div class="d-lg-flex justify-content-center">
   <% videos.each do |video| %>
-    <div class="video-flex-item video">
+    <div class="p-2">
       <div class="video-container">
         <iframe src="//youtube.com/embed/<%= video.url.split("=").last %>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
       </div>

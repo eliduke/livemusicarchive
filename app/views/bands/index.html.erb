@@ -3,7 +3,7 @@
 <div id="bands">
   <div class="row">
     <div class="col-sm-8">
-      <h1>Bands</h1>
+      <h1 class="text-start">Bands</h1>
     </div>
     <div class="col-sm-4">
       <%= render "shared/search_form", path: bands_path %>
@@ -12,11 +12,11 @@
 
   <%= query_result_details(params[:q], @bands.size) %>
 
-  <div class="index-flex-container">
+  <div class="d-lg-flex justify-content-center">
     <% @bands.each do |band| %>
-      <div class="index-flex-item">
+      <div class="p-2">
         <%= link_to image_tag(image_url_for(band), class: "img-fluid"), band %>
-        <p class='text-center'><%= link_to band.name, band %></p>
+        <p class="text-center"><%= link_to band.name, band %></p>
       </div>
     <% end %>
   </div>

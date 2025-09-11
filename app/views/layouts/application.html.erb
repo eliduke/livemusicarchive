@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Myeongjo:700&display=swap">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-      <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :application, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
@@ -34,13 +33,13 @@
           blueheron.video
         </a>
 
-        <ul class="nav-list d-flex list-unstyled p-0 m-0 gap-2 fs-3 text-white">
-          <li><%= link_to icon('search'), search_index_path %></li>
-          <li><%= link_to "Bands", bands_path %></li>
-          <li><%= link_to "Venues", venues_path %></li>
-          <li><%= link_to "Shows", shows_path %></li>
+        <ul class="nav-list d-flex list-unstyled p-0 m-0 gap-4">
+          <li><%= link_to icon('search'), search_index_path, class: "link-light text-decoration-none" %></li>
+          <li><%= link_to "Bands", bands_path, class: "link-light text-decoration-none" %></li>
+          <li><%= link_to "Venues", venues_path, class: "link-light text-decoration-none" %></li>
+          <li><%= link_to "Shows", shows_path, class: "link-light text-decoration-none" %></li>
           <% if current_user %>
-            <li><%= link_to "Admin", admin_path %></li>
+            <li><%= link_to "Admin", admin_path, class: "link-light text-decoration-none" %></li>
           <% end %>
         </ul>
       </div>
@@ -60,9 +59,9 @@
 
       <%= yield %>
 
-      <div id='footer' class='row'>
-        <div class=col-sm-12>
-          <p>Blue Heron Video | Shelby Kray | <a href='mailto:blueheronvideo@gmail.com'>Email</a></p>
+      <div id="footer" class="row">
+        <div class="col-sm-12">
+          <p>Blue Heron Video | Shelby Kray | <a href="mailto:blueheronvideo@gmail.com">Email</a></p>
           <p>Site design & build by <a href="https://merner.co" target="_blank">merner.co</a></p>
           <p><%= link_to "Login", login_path %></p>
         </div>
