@@ -35,14 +35,14 @@ module ApplicationHelper
 
   def links_for(object)
     links = ""
-    links += "<li>#{link_to icon('globe'), object.website, target: '_blank'}</li>" if object.website?
-    links += "<li>#{link_to icon('facebook-square'), object.facebook, target: '_blank'}</li>" if object.facebook?
-    links += "<li>#{link_to icon('instagram'), object.instagram, target: '_blank'}</li>" if object.instagram?
-    links += "<li>#{link_to icon('twitter'), object.twitter, target: '_blank'}</li>" if object.twitter?
+    links += "<li class='list-inline-item fs-3'>#{link_to icon('globe'), object.website, target: '_blank'}</li>" if object.website?
+    links += "<li class='list-inline-item fs-3'>#{link_to icon('facebook-square'), object.facebook, target: '_blank'}</li>" if object.facebook?
+    links += "<li class='list-inline-item fs-3'>#{link_to icon('instagram'), object.instagram, target: '_blank'}</li>" if object.instagram?
+    links += "<li class='list-inline-item fs-3'>#{link_to icon('twitter'), object.twitter, target: '_blank'}</li>" if object.twitter?
 
     if object.class.name == "Band"
-      links += "<li>#{link_to icon('bandcamp'), object.bandcamp, target: '_blank'}</li>" if object.bandcamp?
-      links += "<li>#{link_to icon('soundcloud'), object.soundcloud, target: '_blank'}</li>" if object.soundcloud?
+      links += "<li class='list-inline-item fs-3'>#{link_to icon('bandcamp'), object.bandcamp, target: '_blank'}</li>" if object.bandcamp?
+      links += "<li class='list-inline-item fs-3'>#{link_to icon('soundcloud'), object.soundcloud, target: '_blank'}</li>" if object.soundcloud?
     end
 
     links.html_safe
