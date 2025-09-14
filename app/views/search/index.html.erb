@@ -2,34 +2,37 @@
 
 <div id="search">
   <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-      <h1 class='text-center'>Global Search</h1>
-      <p class='help-block text-center'>All bands, venues, shows, and videos</p>
-      <%= form_with(url: search_index_path, method: :get, local: true) do |form| %>
-        <div class="form-group">
-          <%= form.label :q, class: 'sr-only' %>
-          <div class="input-group">
-            <div class="input-group-addon">
-              <%= icon('search') %>
-            </div>
+    <div class="col-md-8 offset-md-2">
+      <h1 class="text-center">Global Search</h1>
 
-            <%= form.text_field :q, value: params[:q], class: "form-control input-lg", placeholder: "What are you looking for?" %>
-            <% if params[:q] %>
-              <div class="input-group-addon">
+      <p class="text-center fs-5 mb-4">All bands, venues, shows, and videos</p>
+
+      <%= form_with(url: search_index_path, method: :get, local: true) do |form| %>
+        <div class="mb-4">
+          <%= form.label :q, class: "sr-only" %>
+          <div class="input-group">
+            <%= form.text_field :q, value: params[:q], class: "form-control form-control-lg", placeholder: "What are you looking for?" %>
+
+            <div class="input-group-text fs-5">
+              <% if params[:q] %>
                 <%= link_to search_index_path do %>
                   <%= icon('times') %>
                 <% end %>
-              </div>
-            <% end %>
+              <% else %>
+                <button type="submit" class="btn p-0 m-0">
+                  <%= icon('search') %>
+                </button>
+              <% end %>
+            </div>
           </div>
         </div>
       <% end %>
 
       <% if @results.any? %>
-        <table class='table table-striped' style='background-color: #fff'>
+        <table class="table table-striped" style="background-color: #fff">
           <% @results.each do |result| %>
             <tr>
-              <td width='50'><%= result.searchable_type %></td>
+              <td width="50"><%= result.searchable_type %></td>
               <td><%= link_to result.searchable.display_name, result.searchable %></td>
             </tr>
           <% end %>

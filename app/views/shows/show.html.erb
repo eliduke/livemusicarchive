@@ -2,14 +2,14 @@
 <%= render "shared/admin_links", object: @show %>
 
 <div id="show">
-  <div class='row'>
-    <div class='col-sm-6 col-md-9'>
+  <div class="row">
+    <div class="col-sm-6 col-md-9">
       <h1><%= @show.display_name %></h1>
     </div>
-    <div class='col-sm-6 col-md-3'>
+    <div class="col-sm-6 col-md-3">
       <%= image_tag(image_url_for(@show.venue, size: "1200"), class: "img-fluid") %>
-      <p class='help-block text-center'>
-        <%= link_to @show.venue.name, @show.venue %><br />
+      <p class="help-block text-center">
+        <%= link_to @show.venue.name, @show.venue %><br>
         <%= @show.date.strftime("%B #{@show.date.day.ordinalize}, %Y") %>
       </p>
     </div>
@@ -17,14 +17,14 @@
 
   <h3>Bands</h3>
 
-  <div class="index-flex-container" <%= @flex_container_adjustment %>>
+  <div class="d-flex flew-wrap justify-content-start">
     <% @bands.each do |band| %>
-      <div class="index-flex-item" <%= @flex_item_adjustment %>>
+      <div class="p-2" style="width: 400px">
         <%= link_to image_tag(image_url_for(band), class: "img-fluid"), band %>
-        <p class='text-center'>
+        <p class="text-center">
           <%= link_to band.name, band %>
           <% if current_user %>
-            <br/><%= link_to "add video", new_video_path(show_id: @show.id, band_id: band.id), class: 'btn btn-xs btn-success' %>
+            <br><%= link_to "add video", new_video_path(show_id: @show.id, band_id: band.id), class: "btn btn-xs btn-success" %>
           <% end %>
         </p>
       </div>
@@ -43,13 +43,14 @@
   %>
 
   <% if @videos.size > 6 %>
-    <%= link_to "Click here for all videos from this show", videos_url(show_id: @show.id), class: 'btn btn-md btn-info btn-center' %>
+    <%= link_to "Click here for all videos from this show", videos_url(show_id: @show.id), class: "btn btn-md btn-info btn-center" %>
   <% end %>
 
   <% if @show.notes? %>
-    <hr />
+    <hr>
 
     <h3>Notes</h3>
+
     <%= simple_format(@show.notes) %>
   <% end %>
 </div>

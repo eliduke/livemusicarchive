@@ -1,35 +1,35 @@
 <h1>Add video to features</h1>
-<div class='row'>
-  <div class='col-sm-6'>
+
+<div class="row mb-5">
+  <div class="col-sm-6">
     <h3>Video</h3>
     <div class="video-container">
-      <iframe src="//youtube.com/embed/<%= @video.url.split("=").last %>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      <iframe src="//youtube.com/embed/<%= @video.url.split("=").last %>" frameborder="0" title="YouTube Video" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
     </div>
   </div>
-  <div class='col-sm-6'>
+  <div class="col-sm-6">
     <h3>Which Feature slot?</h3>
     <%= link_to edit_feature_path(id: 1, video_id: @video.id) do %>
-      <%= image_tag 'video-1.png', class: 'img-fluid', style: 'margin-bottom: 0' %>
+      <%= image_tag "video-1.png", class: "img-fluid" %>
     <% end %>
-    <!-- <hr />
-    <p class='text-center'>Other Featured Videos</p>
-    <hr />
-    <div class='row'>
-      <div class='col-xs-4'>
-        <%= link_to edit_feature_path(id: 2, video_id: @video.id) do %>
-          <%= image_tag 'video-2.png', class: 'img-fluid' %>
-        <% end %>
-      </div>
-      <div class='col-xs-4'>
-        <%= link_to edit_feature_path(id: 3, video_id: @video.id) do %>
-          <%= image_tag 'video-3.png', class: 'img-fluid' %>
-        <% end %>
-      </div>
-      <div class='col-xs-4'>
-        <%= link_to edit_feature_path(id: 4, video_id: @video.id) do %>
-          <%= image_tag 'video-4.png', class: 'img-fluid' %>
-        <% end %>
-      </div>
-    </div> -->
+  </div>
+</div>
+
+<div class="row">
+  <h3 class="text-center">Other Featured Video Slots</h3>
+  <div class="col-sm-4">
+    <%= link_to edit_feature_path(id: 2, video_id: @video.id) do %>
+      <%= image_tag "video-2.png", class: "img-fluid" %>
+    <% end %>
+  </div>
+  <div class="col-sm-4">
+    <%= link_to edit_feature_path(id: 3, video_id: @video.id) do %>
+      <%= image_tag "video-3.png", class: "img-fluid" %>
+    <% end %>
+  </div>
+  <div class="col-sm-4">
+    <%= link_to edit_feature_path(id: 4, video_id: @video.id) do %>
+      <%= image_tag "video-4.png", class: "img-fluid" %>
+    <% end %>
   </div>
 </div>

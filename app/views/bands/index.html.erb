@@ -12,9 +12,9 @@
 
   <%= query_result_details(params[:q], @bands.size) %>
 
-  <div class="d-lg-flex justify-content-center">
+  <div class="d-flex flex-wrap justify-content-around">
     <% @bands.each do |band| %>
-      <div class="p-2">
+      <div class="gap-1" style="width: 300px">
         <%= link_to image_tag(image_url_for(band), class: "img-fluid"), band %>
         <p class="text-center"><%= link_to band.name, band %></p>
       </div>

@@ -2,19 +2,19 @@
 <%= render "shared/admin_links", object: @video %>
 
 <div id="video">
-  <div class="row">
-    <div class="col-sm-10 col-sm-offset-1">
+  <div class="row mb-5">
+    <div class="col-sm-10 offset-sm-1">
       <div class="video-container">
-        <iframe src="//youtube.com/embed/<%= @video.url.split("=").last %>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        <iframe src="//youtube.com/embed/<%= @video.url.split("=").last %>" frameborder="0" title="YouTube Video" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
       </div>
 
-      <h1 class="text-center">
-        <em><%= @video.name %></em> by <%= link_to @video.band.name, @video.band %><br/>
+      <h3 class="text-center">
+        <em><%= @video.name %></em> by <%= link_to @video.band.name, @video.band %><br>
         <small>
           at <%= link_to @video.venue.name, @video.venue %>
           on <%= link_to @video.show.date.strftime("%B #{@video.show.date.day.ordinalize}, %Y"), @video.show %>
         </small>
-      </h1>
+      </h3>
     </div>
   </div>
 
@@ -32,10 +32,10 @@
   <% end %>
 
   <% if @videos.size > 3 %>
-    <%= link_to "All videos by <em>#{@video.band.name}</em>".html_safe, videos_url(band_id: @video.band.id), class: 'btn btn-md btn-info btn-center'%>
+    <%= link_to "All videos by <em>#{@video.band.name}</em>".html_safe, videos_url(band_id: @video.band.id), class: 'btn btn-md btn-info btn-center' %>
   <% end %>
 
-  <hr />
+  <hr>
 
   <% if @shows.any? %>
     <h3>Shows with <em><%= @video.band.name %></em></h3>

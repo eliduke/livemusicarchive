@@ -1,8 +1,8 @@
-<div class="d-lg-flex justify-content-center">
+<div class="d-flex flex-wrap justify-content-around">
   <% videos.each do |video| %>
-    <div class="p-2">
+    <div class="p-2" style="width: 400px">
       <div class="video-container">
-        <iframe src="//youtube.com/embed/<%= video.url.split("=").last %>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        <iframe src="//youtube.com/embed/<%= video.url.split("=").last %>" frameborder="0"  title="YouTube Video" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
       </div>
 
       <p>

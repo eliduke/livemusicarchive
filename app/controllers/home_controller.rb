@@ -21,7 +21,7 @@ class HomeController < ApplicationController
 
     if params[:supporter_id].present?
       @supporter = Supporter.find(params[:supporter_id])
-      @supporter_name_label = "Edit Supporter"
+      @supporter_name_label = "Edit Supporter - #{helpers.link_to 'Cancel', admin_path}".html_safe
     else
       @supporter = Supporter.new
       @supporter_name_label = "Add New Supporter"

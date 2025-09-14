@@ -1,37 +1,31 @@
 <%= render "shared/social_meta", object: "Admin" %>
 
-<div id='admin'>
-  <div class='pull-right'>
-    <%= link_to "New Band", new_band_path, class: 'btn btn-sm btn-info' %>
-    <%= link_to "New Venue", new_venue_path, class: 'btn btn-sm btn-info' %>
-    <%= link_to "New Show", new_show_path, class: 'btn btn-sm btn-info' %>
-    <%= link_to "New Video", new_video_path, class: 'btn btn-sm btn-info' %>
-
-    <%=
-      button_to icon('sign-out', "Logout (#{current_user.username})"), logout_path,
-      data: { confirm: 'Are you sure you want to logout?' },
-      class: 'btn btn-sm btn-danger'
-    %>
+<div id="admin">
+  <div class="pull-right">
+    <%= link_to "New Band", new_band_path, class: "btn btn-info" %>
+    <%= link_to "New Venue", new_venue_path, class: "btn btn-info" %>
+    <%= link_to "New Show", new_show_path, class: "btn btn-info" %>
+    <%= link_to "New Video", new_video_path, class: "btn btn-info" %>
   </div>
 
-  <h1>Admin</h1>
+  <h1 class="text-start">Admin</h1>
 
-  <div class='row'>
-    <div class='col-sm-4'>
+  <div class="row">
+    <div class="col-sm-4">
       <h3>Publishable Shows</h3>
-      <p class='help-block'>A show must have a venue, at least one band, and at least one video per band in order to publish it. Publishing a show will automatically publish everything in the show as well: venue, bands, and videos.</p>
+      <p class="form-text">A show must have a venue, at least one band, and at least one video per band in order to publish it. Publishing a show will automatically publish everything in the show as well: venue, bands, and videos.</p>
       <% if @ready_to_publish_shows.any? %>
-        <table class='table table-striped'>
+        <table class="table table-striped">
           <% @ready_to_publish_shows.each do |show| %>
             <tr>
               <td><%= link_to show.display_name, show %></td>
               <td>
                 <%=
-                  link_to 'Publish!',
+                  link_to "Publish!",
                   publish_show_path(show),
                   method: :post,
-                  data: { confirm: 'Are you sure you want to publish this show and all its content?' },
-                  class: 'btn btn-xs btn-success',
+                  data: { confirm: "Are you sure you want to publish this show and all its content?" },
+                  class: "btn btn-xs btn-success",
                   disabled: !current_user.admin?
                 %>
               </td>
@@ -39,20 +33,20 @@
           <% end %>
         </table>
       <% else %>
-        <table class='table table-striped'>
+        <table class="table table-striped">
           <tr>
             <td>You have no publishable shows. Check your drafts!</td>
           </tr>
         </table>
       <% end %>
-      <p class='help-block'>The <a href='#' class='btn btn-xs btn-success' <%= "disabled" if !current_user.admin? %>>Publish!</a> buttons can only be clicked by admins.</p>
+      <p class="form-text">The <a href="#" class="btn btn-sm btn-success" <%= "disabled" if !current_user.admin? %>>Publish!</a> buttons can only be clicked by admins.</p>
     </div>
 
     <div class="col-sm-4">
       <h3>Draft Shows</h3>
-      <p class='help-block'>Most likely, one of the bands doesn't have any videos yet. This list will never have more 10 items (sorted oldest first). When a show moves over to Publishable, another draft will appear on this list.</p>
+      <p class="form-text">Most likely, one of the bands doesn"t have any videos yet. This list will never have more 10 items (sorted oldest first). When a show moves over to Publishable, another draft will appear on this list.</p>
       <% if @shows_in_draft.any? %>
-        <table class='table table-striped'>
+        <table class="table table-striped">
           <% @shows_in_draft.each do |show| %>
             <tr>
               <td><%= link_to show.display_name, show %></td>
@@ -60,7 +54,7 @@
           <% end %>
         </table>
       <% else %>
-        <table class='table table-striped'>
+        <table class="table table-striped">
           <tr>
             <td>You have no draft shows. Check your publishable!</td>
           </tr>
@@ -68,44 +62,36 @@
       <% end %>
     </div>
 
-    <div class='col-sm-4'>
+    <div class="col-sm-4">
       <h3>Supporters</h3>
-      <p class="help-block">Add a new supporter with the form below. Click an existing supporter's name to edit in the form below. Click the <%= icon('times') %> to remove a support from the list.</p>
+      <p class="form-text">Add a new supporter with the form below. Click an existing supporter's name to edit in the form below. Click the <%= icon("times") %> to remove a support from the list.</p>
 
-      <div class="inline-form">
-        <%= form_with(model: @supporter, local: true) do |form| %>
-          <div class="form-group">
-            <%= form.label :name, @supporter_name_label %>
-            <div class="input-group">
-              <% if params[:supporter_id] %>
-                <div class="input-group-addon">
-                  <%= link_to admin_path do %>
-                    <%= icon('times') %>
-                  <% end %>
-                </div>
-              <% end %>
+      <%= form_with(model: @supporter, local: true) do |form| %>
+        <div class="mb-4">
+          <%= form.label :name, @supporter_name_label %>
+          <div class="input-group">
+            <%= form.text_field :name, placeholder: "Supporter name", id: :supporter_name, class: "form-control form-control-md" %>
 
-              <%= form.text_field :name, placeholder: "Supporter name", id: :supporter_name, class: "form-control input-md" %>
-
-              <div class="input-group-addon">
-                <button type="submit" class="btn btn-xs btn-primary">
-                  SAVE
-                </button>
-              </div>
+            <div class="input-group-text">
+              <button type="submit" class="btn btn-xs btn-primary">
+                SAVE
+              </button>
             </div>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
 
-      <ul class='list-inline'>
+      <ul class="list-inline">
         <% @supporters.each do |supporter| %>
-          <li>
+          <li class="list-inline-item fs-6">
             <%= link_to supporter.name, admin_path(supporter_id: supporter.id) %>
             <%=
-              link_to icon('times'),
+              link_to icon("times"),
               supporter_path(supporter),
-              method: :delete,
-              data: { confirm: "Are you sure you want to remove #{supporter.name} from the supporters list?"}
+              data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure you want to remove #{supporter.name} from the supporters list?"
+              }
             %>
           </li>
         <% end %>

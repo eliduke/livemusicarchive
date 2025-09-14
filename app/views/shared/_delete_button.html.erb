@@ -1,5 +1,5 @@
 <%=
-  link_to icon('trash', 'Delete'), object, method: :delete,
-  data: { confirm: 'Are you sure? This action CANNOT be undone.' },
-  class: "btn btn-danger btn-delete"
+  button_to icon('trash', 'Delete'), object, method: :delete,
+  data: { turbo_confirm: 'Are you sure? This action CANNOT be undone.' },
+  class: "btn btn-danger btn-delete pull-right"
 %>

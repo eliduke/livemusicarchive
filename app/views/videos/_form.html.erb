@@ -11,41 +11,41 @@
     </div>
   <% end %>
 
-  <div class="form-group">
+  <div class="mb-4">
     <%= form.label :show_id %>
-    <%= form.select :show_id, options_for_select(Show.options_for_select, params[:show_id] || @video.show&.id), { include_blank: "Select a show" }, id: :video_show_id, class: "form-control input-lg" %>
+    <%= form.select :show_id, options_for_select(Show.options_for_select, params[:show_id] || @video.show&.id), { include_blank: "Select a show" }, id: :video_show_id, class: "form-control form-control-lg" %>
   </div>
 
-  <div class="form-group">
+  <div class="mb-4">
     <%= form.label :band_id %>
-    <%= form.select :band_id, options_from_collection_for_select(Band.all.order(:name), "id", "name", params[:band_id] || @video.band&.id), { include_blank: "Select a band" }, id: :video_band_id, class: "form-control input-lg" %>
+    <%= form.select :band_id, options_from_collection_for_select(Band.all.order(:name), "id", "name", params[:band_id] || @video.band&.id), { include_blank: "Select a band" }, id: :video_band_id, class: "form-control form-control-lg" %>
   </div>
 
-  <div class="form-group">
+  <div class="mb-4">
     <%= form.label :name, "Name" %>
-    <%= form.text_field :name, id: :video_name, class: "form-control input-lg" %>
-    <p class="help-block">
+    <%= form.text_field :name, id: :video_name, class: "form-control form-control-lg" %>
+    <p class="form-text">
       This will typically be <em>Song Name</em> or <em>Full Set</em>, but, you know, whatevs.
     </p>
   </div>
 
   <% if current_user.admin? %>
-    <div class="form-group">
+    <div class="mb-4">
       <%= form.label :status %>
       <%=
         form.select :status, Video.statuses.keys.map { |w| [w.humanize, w] }, {},
-        class: "form-control input-lg"
+        class: "form-control form-control-lg"
       %>
-      <p class="help-block">This is an admin-only field. If you can see this, you are an admin.</p>
+      <p class="form-text">This is an admin-only field. If you can see this, you are an admin.</p>
     </div>
   <% end %>
 
-  <div class="form-group">
+  <div class="mb-4">
     <%= form.label :url, "Video URL" %>
-    <%= form.text_field :url, placeholder: "https://www.youtube.com/watch?v=314159", id: :video_url, class: "form-control input-lg" %>
+    <%= form.text_field :url, placeholder: "https://www.youtube.com/watch?v=314159", id: :video_url, class: "form-control form-control-lg" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit "Save", class: "btn btn-lg btn-primary btn-block" %>
+  <div class="d-grid">
+    <%= form.submit "Save", class: "btn btn-lg btn-primary" %>
   </div>
 <% end %>
