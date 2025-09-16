@@ -90,6 +90,12 @@ small {
   margin-left: 10px;
 }
 
+ul.pagination {
+  li + li {
+    margin-left: 10px
+  }
+}
+
 #home {
   text-align: center;
 
