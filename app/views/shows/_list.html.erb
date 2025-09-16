@@ -8,7 +8,7 @@
       <% if include_headers %>
         <% if include_venue %>
           <th>
-            <span class="hide-on-mobile">
+            <span class="d-none d-md-table-cell">
               Venue
             </span>
           </th>
@@ -28,17 +28,17 @@
 
         <% if include_venue %>
           <td>
-            <span class="hide-on-mobile">
+            <span class="d-none d-md-table-cell">
               <%= link_to show.venue.name, show.venue %>
             </span>
           </td>
         <% end %>
 
         <td>
-          <span class="hide-on-mobile">
+          <span class="d-none d-md-table-cell">
             <%= link_to show.date.strftime("%B #{show.date.day.ordinalize}, %Y"), show %>
           </span>
-          <span class="hide-on-desktop">
+          <span class="d-sm-table-cell d-md-none">
             <%= link_to show.date.strftime("%D"), show %>
           </span>
         </td>

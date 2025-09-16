@@ -45,10 +45,10 @@
           <% end %>
 
           <td>
-            <span class="hide-on-mobile">
+            <span class="d-none d-md-table-cell">
               <%= link_to video.show.date.strftime("%B #{video.show.date.day.ordinalize}, %Y"), video.show %>
             </span>
-            <span class="hide-on-desktop">
+            <span class="d-sm-table-cell d-md-none">
               <%= link_to video.show.date.strftime("%D"), video.show %>
             </span>
           </td>
