@@ -7,7 +7,7 @@
       <h1><%= @show.display_name %></h1>
     </div>
     <div class="col-sm-6 col-md-3">
-      <%= image_tag(image_url_for(@show.venue, size: "1200"), class: "img-fluid") %>
+      <%= image_tag(image_url_for(@show.venue), class: "img-fluid") %>
       <p class="help-block text-center">
         <%= link_to @show.venue.name, @show.venue %><br>
         <%= @show.date.strftime("%B #{@show.date.day.ordinalize}, %Y") %>

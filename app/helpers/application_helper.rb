@@ -60,7 +60,7 @@ module ApplicationHelper
     status_button
   end
 
-  def image_url_for(object, size: nil)
+  def image_url_for(object)
     # return "placeholder.png" if Rails.env.development?
 
     object_id    = object.id
