@@ -66,10 +66,10 @@ module ApplicationHelper
     object_id    = object.id
     object_class = object.class.name.downcase.pluralize
 
-    if object.image.attached?
+    if object.image_attached?
       "https://assets.eliduke.com/live-music-archive-images/#{object_class}/#{object_id}.jpg"
     else
-      "https://placeskull.com/640/360/050b27"
+      "https://placeskull.com/640/360/050b27?t=#{rand(1000000)}"
     end
   end
 

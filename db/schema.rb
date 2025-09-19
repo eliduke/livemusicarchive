@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_11_181541) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_19_061303) do
   create_schema "heroku_ext"
 
   # These are extensions that must be enabled in order to support this database
@@ -22,7 +22,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_11_181541) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", precision: nil, null: false
+    t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -32,10 +32,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_11_181541) do
     t.string "filename", null: false
     t.string "content_type"
     t.text "metadata"
+    t.string "service_name", null: false
     t.bigint "byte_size", null: false
     t.string "checksum"
-    t.datetime "created_at", precision: nil, null: false
-    t.string "service_name", null: false
+    t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -58,6 +58,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_11_181541) do
     t.string "instagram"
     t.string "twitter"
     t.integer "status", default: 0, null: false
+    t.boolean "image_attached", default: false, null: false
     t.index ["status"], name: "index_bands_on_status"
   end
 
@@ -131,6 +132,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_11_181541) do
     t.string "instagram"
     t.string "twitter"
     t.integer "status", default: 0, null: false
+    t.boolean "image_attached", default: false, null: false
     t.index ["status"], name: "index_venues_on_status"
   end
 
